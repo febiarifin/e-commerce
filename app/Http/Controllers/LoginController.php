@@ -22,7 +22,7 @@ class LoginController extends Controller
     public function auth(Request $request)
     {
         $validatedData = $request->validate([
-            'email' => ['required', 'email:dns'],
+            'email' => ['required'],
             'password' => ['required', 'min:6'],
         ]);
         if (Auth::attempt($validatedData)) {

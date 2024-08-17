@@ -12,7 +12,9 @@ class Order extends Model
     public const CANCELED = "canceled";
 
     protected $fillable = [
-        'user_id', 'total_price', 'status'
+        'user_id',
+        'total_price',
+        'status',
     ];
 
     public function user()

@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ $active == 'product' ? 'active' : null }}">
-                    <a href="#">
+                    <a href="{{ route('products.index') }}">
                         <i class="fas fa-table"></i>
                         <p>Product</p>
                     </a>

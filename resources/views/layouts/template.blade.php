@@ -29,45 +29,47 @@
             <!-- End Header -->
 
             <div class="container">
-                <!-- Page Header -->
-                @if (!$is_auth)
-                    <div class="page-header">
-                        <h3 class="fw-bold mb-3">Pages</h3>
-                        <ul class="breadcrumbs mb-3">
-                            <li class="nav-home">
-                                <a href="#">
-                                    <i class="icon-home"></i>
-                                </a>
-                            </li>
-                            <li class="separator">
-                                <i class="icon-arrow-right"></i>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">
-                                    @if ($active == 'dashboard')
-                                        Dashboard
-                                    @elseif ($active == 'product')
-                                        Product
-                                    @elseif ($active == 'report')
-                                        Report
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="separator">
-                                <i class="icon-arrow-right"></i>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">{{ $title }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                @endif
-                <!--   End Page Header   -->
+                <div class="page-inner">
+                    <!-- Page Header -->
+                    @if (!$is_auth)
+                        <div class="page-header">
+                            <h3 class="fw-bold mb-3">Pages</h3>
+                            <ul class="breadcrumbs mb-3">
+                                <li class="nav-home">
+                                    <a href="#">
+                                        <i class="icon-home"></i>
+                                    </a>
+                                </li>
+                                <li class="separator">
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">
+                                        @if ($active == 'dashboard')
+                                            Dashboard
+                                        @elseif ($active == 'product')
+                                            Product
+                                        @elseif ($active == 'report')
+                                            Report
+                                        @endif
+                                    </a>
+                                </li>
+                                <li class="separator">
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">{{ $title }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
+                    <!--   End Page Header   -->
 
-                <!--   Content   -->
-                @yield('content')
-                <!--   End Content   -->
+                    <!--   Content   -->
+                    @yield('content')
+                    <!--   End Content   -->
 
+                </div>
             </div>
 
             <!--   Footer   -->
