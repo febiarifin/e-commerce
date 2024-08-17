@@ -14,7 +14,7 @@
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
                                 <p class="card-category">Sales</p>
-                                <h4 class="card-title">IDR {{ $income }}</h4>
+                                <h4 class="card-title">IDR {{ $sales }}</h4>
                             </div>
                         </div>
                     </div>

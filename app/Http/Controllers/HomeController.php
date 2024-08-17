@@ -32,7 +32,7 @@ class HomeController extends Controller
             'product_count' => Product::all()->count(),
             'order_count' => Order::all()->count(),
             'customer' => User::where('role', User::CUSTOMER)->get()->count(),
-            'income' => Order::sum('total_price'),
+            'sales' => Order::where('status', Order::COMPLETED)->sum('total_price'),
         ];
         return view('pages.dashboard.index', $data);
     }
