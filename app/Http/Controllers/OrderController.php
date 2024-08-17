@@ -71,7 +71,7 @@ class OrderController extends Controller
 
             $payload = [
                 'transaction_details' => [
-                    'order_id' => 'ORDER-PRODUCT-' . $product->id,
+                    'order_id' => 'ORDER-PRODUCT-' . uniqid(),
                     'gross_amount' => $total_amount,
                 ],
                 'customer_details' => [
