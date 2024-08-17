@@ -27,9 +27,28 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item ms-3">
-                        <a class="btn btn-black btn-rounded" href="#!"><i class="fab fa-google"></i> Sign in</a>
-                    </li>
+                    @if (Auth::user())
+                        <li class="nav-item ms-3">
+                            <span class="text-muted">{{ Auth::user()->email }}</span>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <a href="{{ route('home') }}"
+                                class="btn btn-{{ $active == 'home' ? 'primary' : 'light' }} rounded-pill">Home</a>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <a href="{{ route('orders.index') }}"
+                                class="btn btn-{{ $active == 'order' ? 'primary' : 'light' }} rounded-pill">Orders</a>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <a href="{{ route('logout') }}" class="btn btn-danger rounded-pill">Logout</a>
+                        </li>
+                    @else
+                        <li class="nav-item ms-3">
+                            <button type="button" class="btn btn-black btn-rounded" data-bs-toggle="modal"
+                                data-bs-target="#checkoutModal"><i class="fab fa-google"></i> Sign in
+                            </button>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -41,6 +60,26 @@
             @yield('content')
         </div>
     </div>
+
+    @guest
+        <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Authentication</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <p>Sorry, you need to log in to continue the process</p>
+                            <a href="{{ route('auth.google') }}" class="btn btn-primary rounded-pill"><i
+                                    class="fab fa-google"></i> Sign In With Google</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endguest
 
     <!-- JS -->
     @include('layouts.js')

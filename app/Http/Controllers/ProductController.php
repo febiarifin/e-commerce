@@ -88,6 +88,7 @@ class ProductController extends Controller
             'is_auth' => false,
             'product' => $product,
             'layout' => $layout,
+            'user' => Auth::user(),
         ];
         return view('pages.product.detail', $data);
     }

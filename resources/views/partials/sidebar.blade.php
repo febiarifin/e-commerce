@@ -36,10 +36,10 @@
                         <p>Product</p>
                     </a>
                 </li>
-                <li class="nav-item {{ $active == 'report' ? 'active' : null }}">
-                    <a href="#">
+                <li class="nav-item {{ $active == 'order' ? 'active' : null }}">
+                    <a href="{{ route('orders.index') }}">
                         <i class="fas fa-chart-bar"></i>
-                        <p>Report</p>
+                        <p>Order</p>
                     </a>
                 </li>
             </ul>

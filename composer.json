@@ -9,7 +9,9 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.7",
+        "midtrans/midtrans-php": "^2.5",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {

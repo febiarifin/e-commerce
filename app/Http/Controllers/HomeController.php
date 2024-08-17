@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $data = [
             'title' => 'JAMKO',
-            'active' => null,
+            'active' => 'home',
             'is_auth' => false,
             'products' => Product::orderBy('created_at', 'desc')->paginate(8),
         ];
