@@ -4,10 +4,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,15 +31,13 @@ Route::controller(GoogleController::class)->group(function(){
 Route::get('products/detail/{product}', [ProductController::class, 'show'])->name('public.product.show');
 
 Route::group(['middleware' => 'auth'], function(){
-    
+
     Route::resource('products', ProductController::class);
     Route::resource('orders', OrderController::class);
+
     Route::get('orders/success/{order}', [OrderController::class, 'success'])->name('order.success');
     Route::get('orders/cancelled/{order}', [OrderController::class, 'cancelled'])->name('order.cancelled');
 
-    Route::get('logout', function(){
-        Session::flush();
-        Auth::logout();
-        return redirect()->route('home');
-    })->name('logout');
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 });

@@ -4,7 +4,8 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
 
-            <a href="/" class="logo text-white fs-3">
+            <a href="{{ route('dashboard') }}" class="logo text-white fs-3">
+                <img src="{{ asset('kaiadmin_lite') }}/assets/img/kaiadmin/favicon.png" alt="navbar brand" class="navbar-brand" height="50">
                 {{ config('app.name') }}
             </a>
             <div class="nav-toggle">
@@ -25,7 +26,7 @@
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
                 <li class="nav-item {{ $active == 'dashboard' ? 'active' : null }}">
-                    <a href="#">
+                    <a href="{{ route('dashboard') }}">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>

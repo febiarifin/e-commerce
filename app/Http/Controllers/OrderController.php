@@ -21,7 +21,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user = User::with(['orders'])->findOrFail(Auth::user()->id);
         if ($user->role == User::ADMIN) {
             $orders = Order::orderBy('created_at', 'desc')->get();
             $layout = 'layouts.template';
