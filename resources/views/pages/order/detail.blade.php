@@ -8,8 +8,8 @@
         </div>
         <div class="col-md-6 border p-3 bg-white">
             @if (Auth::user()->role == \App\Models\User::ADMIN)
-            <p><span class="text-muted">Customer Info: </span> {{ $order->user->email }}</p>
-        @endif
+                <p><span class="text-muted">Customer Info: </span> {{ $order->user->email }}</p>
+            @endif
             <h2>{{ $order->items()->first()->product->name }}</h2>
             <p class="text-muted">Note: {{ $order->note }}</p>
             <hr>
@@ -27,8 +27,15 @@
                 <span class="flex-shrink-0 fs-4 fw-bold">IDR {{ $order->total_price }}</span>
             </div>
             @if ($order->status == \App\Models\Order::PENDING)
-                <button class="btn btn-primary mt-5" id="pay-button">PAY WITH MIDTRANS</button>
-                <a href="{{ route('order.cancelled', $order->id) }}" class="btn btn-danger mt-5" onclick="return confirm('Are you sure you want to cancel it?')">CANCEL CHECKOUT</a>
+                @if (Auth::user()->role == \App\Models\User::CUSTOMER)
+                    <button class="btn btn-primary mt-5" id="pay-button">PAY WITH MIDTRANS</button>
+                    <a href="{{ route('order.cancelled', $order->id) }}" class="btn btn-danger mt-5"
+                        onclick="return confirm('Are you sure you want to cancel it?')">CANCEL CHECKOUT</a>
+                @else
+                <button
+                    class="btn btn-warning mt-5 text-uppercase"
+                    disabled>{{ $order->status }}</button>
+                @endif
             @elseif ($order->status == \App\Models\Order::COMPLETED || $order->status == \App\Models\Order::CANCELLED)
                 <button
                     class="btn btn-{{ $order->status == \App\Models\Order::COMPLETED ? 'success' : 'danger' }} mt-5 text-uppercase"

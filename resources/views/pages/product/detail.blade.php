@@ -13,7 +13,9 @@
                 <h2>{{ $product->name }}</h2>
                 <div class="text-muted">{!! nl2br($product->description) !!}</div>
                 <p class="mt-3">
-                    Stock <b class="badge badge-{{ $product->stock != 0 ? 'success' : 'danger' }}">{{ $product->stock != 0 ? $product->stock : 'SOLD' }}</b> <br>
+                    Stock <b
+                        class="badge badge-{{ $product->stock != 0 ? 'success' : 'danger' }}">{{ $product->stock != 0 ? $product->stock : 'SOLD' }}</b>
+                    <br>
                     <span class="fs-4">IDR {{ $product->price }}</span>
                 </p>
                 @if ($user)
@@ -30,10 +32,12 @@
                                     {{ $product->stock == 0 ? 'disabled' : '' }}>+</button>
                             </div>
                         </div>
-                        <div class="mb-5">
-                            <label>Note</label>
-                            <textarea name="note" class="form-control" required></textarea>
-                        </div>
+                        @if ($product->stock != 0)
+                            <div class="mb-5">
+                                <label>Note</label>
+                                <textarea name="note" class="form-control" required></textarea>
+                            </div>
+                        @endif
                         <button type="submit"
                             class="btn btn-primary mt-3 {{ $product->stock == 0 ? 'disabled' : '' }}">Checkout</button>
                     @endif
