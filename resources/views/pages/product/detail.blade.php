@@ -13,7 +13,7 @@
                 <h2>{{ $product->name }}</h2>
                 <div class="text-muted">{!! nl2br($product->description) !!}</div>
                 <p class="mt-3">
-                    Stock <b> {{ $product->stock }}</b> <br>
+                    Stock <b class="badge badge-{{ $product->stock != 0 ? 'success' : 'danger' }}">{{ $product->stock != 0 ? $product->stock : 'SOLD' }}</b> <br>
                     <span class="fs-4">IDR {{ $product->price }}</span>
                 </p>
                 @if ($user)

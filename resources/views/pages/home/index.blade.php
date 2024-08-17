@@ -8,7 +8,7 @@
                     <img src="{{ asset($product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="text-muted">Stock <b>{{ $product->stock }}</b></p>
+                        <p class="text-muted">Stock <b class="badge badge-{{ $product->stock != 0 ? 'success' : 'danger' }}">{{ $product->stock != 0 ? $product->stock : 'SOLD' }}</b></p>
                         <div class="d-flex justify-content-center">
                             <h5 class="flex-grow-1 text-primary mt-2">IDR {{ $product->price }}</h5>
                             <div class="flex-shrink-0">
