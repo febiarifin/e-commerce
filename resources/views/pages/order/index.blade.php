@@ -71,10 +71,17 @@
                                                     <i class="fas fa-info-circle"></i>
                                                 </a>
                                             @elseif ($order->status == \App\Models\Order::PENDING)
-                                                <a href="{{ route('orders.show', $order->id) }}"
-                                                    class="btn btn-primary btn-sm">
-                                                    <i class="fas fa-dollar-sign"></i> PAYMENT
-                                                </a>
+                                                @if (Auth::user()->role == \App\Models\User::ADMIN)
+                                                    <a href="{{ route('orders.show', $order->id) }}"
+                                                        class="btn btn-info btn-sm">
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('orduers.show', $order->id) }}"
+                                                        class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-dollar-sign"></i> PAYMENT
+                                                    </a>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>
