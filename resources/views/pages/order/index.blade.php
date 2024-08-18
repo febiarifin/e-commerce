@@ -77,7 +77,7 @@
                                                         <i class="fas fa-info-circle"></i>
                                                     </a>
                                                 @else
-                                                    <a href="{{ route('orduers.show', $order->id) }}"
+                                                    <a href="{{ route('orders.show', $order->id) }}"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fas fa-dollar-sign"></i> PAYMENT
                                                     </a>
