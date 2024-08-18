@@ -29,12 +29,11 @@ Route::controller(GoogleController::class)->group(function(){
 });
 
 Route::get('products/detail/{product}', [ProductController::class, 'show'])->name('public.product.show');
+Route::post('products/search', [ProductController::class, 'search'])->name('product.search');
 
 Route::group(['middleware' => 'auth'], function(){
-
     Route::resource('products', ProductController::class);
     Route::resource('orders', OrderController::class);
-
     Route::get('orders/success/{order}', [OrderController::class, 'success'])->name('order.success');
     Route::get('orders/cancelled/{order}', [OrderController::class, 'cancelled'])->name('order.cancelled');
 

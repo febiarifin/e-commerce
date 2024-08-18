@@ -53,7 +53,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => ['required'],
             'description' => ['required'],
-            'image' => ['required', 'mimes:png,jpg,jpeg','max:2000'],
+            'image' => ['required', 'mimes:png,jpg,jpeg', 'max:2000'],
             'stock' => ['required'],
             'price' => ['required'],
             'status' => ['required'],
@@ -76,10 +76,10 @@ class ProductController extends Controller
         if ($user) {
             if ($user->role == User::ADMIN) {
                 $layout = 'layouts.template';
-            }else{
+            } else {
                 $layout = 'layouts.home';
             }
-        }else{
+        } else {
             $layout = 'layouts.home';
         }
         $data = [
@@ -122,12 +122,16 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => ['required'],
             'description' => ['required'],
-            'image' => [Rule::requiredIf(function() use($request){
-                if (empty($request->image)) {
-                    return false;
-                }
-                return true;
-            }), 'mimes:png,jpg,jpeg','max:2000'],
+            'image' => [
+                Rule::requiredIf(function () use ($request) {
+                    if (empty($request->image)) {
+                        return false;
+                    }
+                    return true;
+                }),
+                'mimes:png,jpg,jpeg',
+                'max:2000'
+            ],
             'stock' => ['required'],
             'price' => ['required'],
             'status' => ['required'],
@@ -153,5 +157,15 @@ class ProductController extends Controller
         $product->delete();
         toastr()->success('Data has been deleted successfully!');
         return back();
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->keyword != '') {
+            $products = Product::where('name', 'LIKE', '%' . $request->keyword . '%')->where('status', Product::ACTIVE)->get();
+        }
+        return response()->json([
+            'products' => $products
+        ]);
     }
 }
